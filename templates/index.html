@@ -81,7 +81,7 @@
             <div>
                 <h1 class="text-base md:text-lg font-black leading-tight tracking-tight flex items-center gap-2">
                     <span class="gradient-title drop-shadow-sm font-extrabold tracking-wide">Thou Downloading</span>
-                    <span class="text-[10px] bg-gradient-to-r from-amber-400 to-yellow-300 text-slate-900 px-2 py-0.5 rounded-full font-black uppercase tracking-wider shadow-sm">Cloud VIP</span>
+                    <span class="text-[10px] bg-gradient-to-r from-amber-400 to-yellow-300 text-slate-900 px-2 py-0.5 rounded-full font-black uppercase tracking-wider shadow-sm">VIP PRO</span>
                 </h1>
                 
                 <div class="marquee-wrapper max-w-xs md:max-w-md h-4 mt-0.5">
@@ -105,13 +105,13 @@
             <div id="googleAuthSection">
                 <button id="btnGoogleLogin" onclick="handleGoogleSignIn()" class="flex items-center gap-2 px-3 py-1.5 bg-white text-slate-700 hover:bg-slate-50 text-xs font-bold rounded-lg shadow-sm border border-white/40 transition">
                     <img src="https://www.gstatic.com/images/branding/product/1x/gsa_512dp.png" alt="Google" class="w-4 h-4">
-                    <span>Google Sign in</span>
+                    <span>Sign in with Google</span>
                 </button>
                 <div id="userProfile" class="hidden flex items-center gap-2.5 bg-white/15 border border-white/30 px-2.5 py-1 rounded-xl shadow-sm">
                     <img id="userAvatar" src="https://lh3.googleusercontent.com/a/default-user=s96-c" alt="Avatar" class="w-6 h-6 rounded-full border border-white shadow-sm">
                     <div class="text-left">
                         <div id="userName" class="text-xs font-bold text-white leading-none">Thou</div>
-                        <div class="text-[9px] text-amber-200 font-semibold">Online</div>
+                        <div class="text-[9px] text-amber-200 font-semibold">Google Account</div>
                     </div>
                     <button onclick="handleSignOut()" title="Sign Out" class="ml-1 text-white/70 hover:text-white text-xs">
                         <i class="fa-solid fa-arrow-right-from-bracket"></i>
@@ -144,13 +144,17 @@
                     <i class="fa-solid fa-user-circle w-4"></i>
                     <span>1 Profile Mode</span>
                 </button>
+                <button onclick="setMode('playlist')" class="nav-btn whitespace-nowrap flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-semibold text-sky-400 hover:bg-slate-800/80 transition">
+                    <i class="fa-solid fa-list-ul w-4"></i>
+                    <span>Playlist Mode</span>
+                </button>
             </div>
             <div class="hidden md:block bg-slate-950/70 border border-slate-800/80 rounded-2xl p-3 text-center">
                 <div class="w-10 h-10 mx-auto bg-gradient-to-tr from-sky-600 to-indigo-600 text-white rounded-xl flex items-center justify-center text-lg mb-1.5 shadow-sm shadow-sky-500/30">
-                    <i class="fa-solid fa-cloud"></i>
+                    <i class="fa-solid fa-folder-open text-yellow-300"></i>
                 </div>
-                <div class="text-xs font-bold text-slate-200">Cloud Web Live</div>
-                <div class="text-[10px] text-emerald-400 font-medium mt-0.5">● Auto Saves to Browser</div>
+                <div class="text-xs font-bold text-slate-200">Custom Storage</div>
+                <div class="text-[10px] text-emerald-400 font-medium mt-0.5">● Ready to save locally</div>
             </div>
         </aside>
 
@@ -163,31 +167,31 @@
                         <div class="icon-box w-10 h-10 rounded-xl bg-black border border-slate-700/80 flex items-center justify-center text-white text-lg">
                             <i class="fa-brands fa-tiktok"></i>
                         </div>
-                        <span class="text-[11px] font-bold text-slate-300">TikTok</span>
+                        <span class="text-[11px] font-bold text-slate-300">TikTok Profile</span>
                     </div>
                     <div class="platform-card p-2 md:p-3.5 flex flex-col items-center justify-center gap-1.5">
                         <div class="icon-box w-10 h-10 rounded-xl bg-[#1877F2] flex items-center justify-center text-white text-lg">
                             <i class="fa-brands fa-facebook-f"></i>
                         </div>
-                        <span class="text-[11px] font-bold text-slate-300">Facebook</span>
+                        <span class="text-[11px] font-bold text-slate-300">Facebook Page</span>
                     </div>
                     <div class="platform-card p-2 md:p-3.5 flex flex-col items-center justify-center gap-1.5">
                         <div class="icon-box w-10 h-10 rounded-xl bg-[#FF0000] flex items-center justify-center text-white text-lg">
                             <i class="fa-brands fa-youtube"></i>
                         </div>
-                        <span class="text-[11px] font-bold text-slate-300">YouTube</span>
+                        <span class="text-[11px] font-bold text-slate-300">YouTube Channel</span>
                     </div>
                     <div class="platform-card p-2 md:p-3.5 flex flex-col items-center justify-center gap-1.5">
                         <div class="icon-box w-10 h-10 rounded-xl bg-[#E60023] flex items-center justify-center text-white text-lg">
                             <i class="fa-brands fa-pinterest-p"></i>
                         </div>
-                        <span class="text-[11px] font-bold text-slate-300">Pinterest</span>
+                        <span class="text-[11px] font-bold text-slate-300">Pinterest Board</span>
                     </div>
                     <div class="platform-card p-2 md:p-3.5 flex flex-col items-center justify-center gap-1.5">
                         <div class="icon-box w-10 h-10 rounded-xl bg-[#229ED9] flex items-center justify-center text-white text-lg">
                             <i class="fa-brands fa-telegram"></i>
                         </div>
-                        <span class="text-[11px] font-bold text-slate-300">Telegram</span>
+                        <span class="text-[11px] font-bold text-slate-300">Telegram Channel</span>
                     </div>
                 </div>
 
@@ -223,7 +227,7 @@
                             </label>
                             <label class="flex items-center gap-2 cursor-pointer">
                                 <input type="radio" name="mode" value="profile" id="modeProfile" checked class="w-4 h-4 text-amber-500 focus:ring-amber-500 bg-slate-800 border-slate-700">
-                                <span class="text-amber-400 font-extrabold">👑 1 Profile / Channel</span>
+                                <span class="text-amber-400 font-extrabold">👑 1 Profile / Channel (All Videos)</span>
                             </label>
                         </div>
 
@@ -252,16 +256,19 @@
 
                         <div class="col-span-1 md:col-span-4 space-y-1">
                             <h4 id="videoTitle" class="text-sm font-bold text-slate-100 line-clamp-1">Video / Profile Title</h4>
-                            <div id="videoDuration" class="text-xs text-slate-400 font-medium">Ready to download</div>
+                            <div id="videoDuration" class="text-xs text-slate-400 font-medium">Auto Channel Fetch Ready</div>
                             
-                            <!-- SAVE LOCATION INFO -->
-                            <div class="flex items-center gap-2 pt-1 text-xs">
-                                <span class="text-slate-400 font-medium flex-shrink-0">Save Location:</span>
-                                <div class="flex items-center gap-1.5 text-emerald-400 bg-emerald-950/40 border border-emerald-500/30 px-2.5 py-0.5 rounded-lg text-[11px] font-semibold">
-                                    <i class="fa-solid fa-mobile-screen text-[10px]"></i>
-                                    <i class="fa-solid fa-laptop text-[10px]"></i>
-                                    <span>Browser Downloads (ទូរស័ព្ទ / PC)</span>
-                                </div>
+                            <!-- BROWSER FOLDER PICKER -->
+                            <div class="flex items-center gap-1.5 pt-1 text-xs">
+                                <span class="text-slate-400 font-medium flex-shrink-0">Save to:</span>
+                                <input id="savePathInput" type="text" readonly
+                                       value="Downloads (Default)" 
+                                       class="bg-slate-950 border border-slate-800 text-sky-400 font-mono text-[11px] px-2.5 py-1 rounded-lg w-40 truncate focus:outline-none cursor-pointer"
+                                       title="ចុច Change ដើម្បីជ្រើសរើស Folder លើកុំព្យូទ័ររបស់អ្នក">
+                                <button id="changeFolderBtn" onclick="pickCustomDirectory()" 
+                                        class="text-[11px] bg-sky-600 hover:bg-sky-500 text-white font-bold px-2.5 py-1 rounded-lg transition flex items-center gap-1 shadow-sm flex-shrink-0">
+                                    <i class="fa-regular fa-folder-open"></i> Change
+                                </button>
                             </div>
                         </div>
 
@@ -330,6 +337,22 @@
     <script>
         let currentNav = 'home';
         let currentQueueFilter = 'all';
+        let customDirHandle = null;
+
+        // BROWSER FOLDER PICKER API (Allows user to pick folder anywhere on their PC!)
+        async function pickCustomDirectory() {
+            if ('showDirectoryPicker' in window) {
+                try {
+                    customDirHandle = await window.showDirectoryPicker();
+                    document.getElementById('savePathInput').value = customDirHandle.name;
+                    alert("បានជ្រើសរើស Folder: " + customDirHandle.name + " ដោយជោគជ័យ! រាល់វីដេអូទាញយកនឹងរក្សាទុកក្នុងនេះ។");
+                } catch (err) {
+                    console.log("Cancelled directory pick");
+                }
+            } else {
+                alert("កម្មវិធី Browser របស់អ្នកមិនទាន់ Support មុខងាររើស Folder ផ្ទាល់ទេ។ វីដេអូនឹងត្រូវ Save ចូល Folder Downloads ដោយស្វ័យប្រវត្តិ!");
+            }
+        }
 
         function setMode(m) {
             if (m === 'profile') document.getElementById('modeProfile').checked = true;
@@ -446,7 +469,7 @@
             const data = await res.json();
             if (data.status === 'started') {
                 addNewDownloadRow(data.task_id, data.title, url, format, mode);
-                trackProgress(data.task_id);
+                trackProgress(data.task_id, data.title, format);
             } else {
                 alert("Error: " + data.message);
             }
@@ -498,7 +521,7 @@
             if (currentQueueFilter !== 'all' && currentQueueFilter !== 'downloading') row.classList.add('hidden');
         }
 
-        function trackProgress(taskId) {
+        function trackProgress(taskId, videoTitle, format) {
             const timer = setInterval(async () => {
                 const res = await fetch(`/api/progress/${taskId}`);
                 const data = await res.json();
@@ -522,18 +545,17 @@
                     stat.innerText = 'Completed!';
                     speed.innerText = '100%';
 
-                    // ADD DIRECT DOWNLOAD BUTTON FOR BROWSER
                     action.innerHTML = `
                         <a href="/api/download_file/${taskId}" download class="px-2.5 py-1 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs flex items-center gap-1.5 shadow-sm transition">
-                            <i class="fa-solid fa-cloud-arrow-down"></i> Save to PC/Phone
+                            <i class="fa-solid fa-cloud-arrow-down"></i> Save File
                         </a>
                         <button class="w-7 h-7 rounded-lg border border-red-500/30 bg-red-500/10 hover:bg-red-500/20 flex items-center justify-center text-xs text-red-400 ml-1" onclick="document.getElementById('task-${taskId}').remove(); updateBadges();">
                             <i class="fa-solid fa-xmark"></i>
                         </button>
                     `;
 
-                    // Auto download trigger
-                    window.location.href = `/api/download_file/${taskId}`;
+                    // SAVE DIRECTLY TO USER'S CHOSEN FOLDER IF PICKED
+                    saveFileToChosenFolder(taskId, videoTitle, format);
 
                     updateBadges();
                     if (currentQueueFilter === 'downloading') row.classList.add('hidden');
@@ -547,6 +569,31 @@
                     alert("បរាជ័យក្នុងការទាញយក:\n" + data.error);
                 }
             }, 1200);
+        }
+
+        async function saveFileToChosenFolder(taskId, title, format) {
+            try {
+                const response = await fetch(`/api/download_file/${taskId}`);
+                const blob = await response.blob();
+                
+                if (customDirHandle) {
+                    const safeName = (title || "video").replace(/[\/\\?%*:|"<>]/g, '_') + `.${format}`;
+                    const fileHandle = await customDirHandle.getFileHandle(safeName, { create: true });
+                    const writable = await fileHandle.createWritable();
+                    await writable.write(blob);
+                    await writable.close();
+                } else {
+                    const downloadUrl = window.URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = downloadUrl;
+                    a.download = (title || "video") + `.${format}`;
+                    document.body.appendChild(a);
+                    a.click();
+                    a.remove();
+                }
+            } catch (err) {
+                window.location.href = `/api/download_file/${taskId}`;
+            }
         }
 
         function updateBadges() {
