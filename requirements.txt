@@ -1,0 +1,4 @@
+flask>=3.0.0
+gunicorn>=21.2.0
+yt-dlp>=2024.08.06
+telethon>=1.36.0
