@@ -5,16 +5,15 @@ import json
 import uuid
 import asyncio
 import threading
-import webbrowser
 import urllib.request
 import urllib.parse
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, send_file
 from yt_dlp import YoutubeDL
 
 app = Flask(__name__)
 
-DEFAULT_DOWNLOAD_DIR = os.path.join(os.path.expanduser("~"), "Downloads", "AllVideoDownloads")
-os.makedirs(DEFAULT_DOWNLOAD_DIR, exist_ok=True)
+DOWNLOAD_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "downloads")
+os.makedirs(DOWNLOAD_DIR, exist_ok=True)
 
 CONFIG_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "tg_config.json")
 DEFAULT_API_ID = "39329089"
@@ -68,11 +67,10 @@ def resolve_pinterest(url):
         pass
     return None
 
-def download_tg_channel_all(clean_link, task_id, is_mp3=False, max_items=None, save_dir=None):
+def download_tg_channel_all(clean_link, task_id, is_mp3=False, max_items=None):
     cfg = load_tg_config()
     api_id = cfg.get("api_id", DEFAULT_API_ID)
     api_hash = cfg.get("api_hash", DEFAULT_API_HASH)
-    target_dir = save_dir if (save_dir and os.path.exists(save_dir)) else DEFAULT_DOWNLOAD_DIR
 
     m = re.search(r't\.me/([^/]+)', clean_link)
     peer = m.group(1) if m else None
@@ -97,58 +95,45 @@ def download_tg_channel_all(clean_link, task_id, is_mp3=False, max_items=None, s
     total = len(media_msgs)
     tasks[task_id]['msg'] = f"រកឃើញ {total} ឯកសារក្នុង Channel..."
     
+    downloaded_files = []
     for idx, msg in enumerate(media_msgs):
         tasks[task_id]['msg'] = f"ទាញយកទី: {idx+1}/{total}"
         tasks[task_id]['percent'] = ((idx + 1) / total) * 100
-        downloaded = client.download_media(msg, file=target_dir)
+        downloaded = client.download_media(msg, file=DOWNLOAD_DIR)
         if is_mp3 and downloaded and not downloaded.endswith('.mp3'):
             base, _ = os.path.splitext(downloaded)
-            try: os.rename(downloaded, f"{base}.mp3")
+            try:
+                os.rename(downloaded, f"{base}.mp3")
+                downloaded = f"{base}.mp3"
             except Exception: pass
+        if downloaded:
+            downloaded_files.append(os.path.basename(downloaded))
 
     client.disconnect()
+    tasks[task_id]['files'] = downloaded_files
     tasks[task_id]['status'] = 'completed'
 
 @app.route('/')
 def index():
     return render_template('index.html')
 
-@app.route('/api/get_current_dir')
-def get_current_dir():
-    return jsonify({"dir": DEFAULT_DOWNLOAD_DIR})
-
-@app.route('/api/select_folder', methods=['POST'])
-def select_folder_api():
-    selected_dir = []
-    def run_dialog():
-        try:
-            import tkinter as tk
-            from tkinter import filedialog
-            root = tk.Tk()
-            root.withdraw()
-            root.attributes('-topmost', True)
-            folder_path = filedialog.askdirectory(title="ជ្រើសរើស Folder ផ្ទុកវីដេអូ", initialdir=DEFAULT_DOWNLOAD_DIR)
-            root.destroy()
-            if folder_path:
-                selected_dir.append(os.path.normpath(folder_path))
-        except Exception as e:
-            print("Dialog error:", e)
-
-    t = threading.Thread(target=run_dialog)
-    t.start()
-    t.join(timeout=30)
-    if selected_dir:
-        return jsonify({"status": "ok", "dir": selected_dir[0]})
-    return jsonify({"status": "cancelled", "dir": ""})
-
-@app.route('/api/open_folder', methods=['POST'])
-def open_folder_api():
-    data = request.json or {}
-    custom_dir = data.get('dir')
-    target = custom_dir if (custom_dir and os.path.exists(custom_dir)) else DEFAULT_DOWNLOAD_DIR
-    if os.path.exists(target):
-        os.system(f'explorer "{target}"')
-    return jsonify({"status": "ok"})
+@app.route('/api/download_file/<task_id>')
+def download_file_api(task_id):
+    task = tasks.get(task_id)
+    if not task:
+        return "File not found", 404
+    
+    file_path = task.get('final_file')
+    if file_path and os.path.exists(file_path):
+        return send_file(file_path, as_attachment=True)
+    
+    files = task.get('files', [])
+    if files:
+        target = os.path.join(DOWNLOAD_DIR, files[0])
+        if os.path.exists(target):
+            return send_file(target, as_attachment=True)
+            
+    return "File not ready or expired", 404
 
 @app.route('/api/analyze', methods=['POST'])
 def analyze_api():
@@ -175,11 +160,11 @@ def analyze_api():
             channel_url = info.get('channel_url') or info.get('uploader_url')
             channel_name = info.get('channel') or info.get('uploader')
             d = info.get('duration', 0)
-            dur = f"{d//60:02d}:{d%60:02d}" if d else "Channel / Video"
+            dur = f"{d//60:02d}:{d%60:02d}" if d else "Ready"
             return jsonify({
-                "status": "ok",
-                "title": title,
-                "duration": dur,
+                "status": "ok", 
+                "title": title, 
+                "duration": dur, 
                 "thumbnail": info.get('thumbnail', ''),
                 "channel_url": channel_url,
                 "channel_name": channel_name
@@ -201,13 +186,6 @@ def download_api():
     mode = data.get('mode', 'single')
     fmt = data.get('format', 'mp4')
     max_items = data.get('max_items', '10')
-    save_dir = data.get('save_dir')
-
-    target_dir = save_dir if (save_dir and len(save_dir.strip()) > 0) else DEFAULT_DOWNLOAD_DIR
-    try:
-        os.makedirs(target_dir, exist_ok=True)
-    except Exception:
-        target_dir = DEFAULT_DOWNLOAD_DIR
 
     is_mp3 = (fmt == 'mp3')
     task_id = str(uuid.uuid4())[:8]
@@ -216,35 +194,33 @@ def download_api():
         'percent': 5,
         'speed': 'Connecting...',
         'msg': 'Starting download...',
-        'title': title
+        'title': title,
+        'final_file': None,
+        'files': []
     }
 
     def worker():
-        # 1. Telegram
         if "t.me" in url and (mode == 'profile' or not re.search(r't\.me/.+/\d+', url)):
             try:
-                download_tg_channel_all(url, task_id, is_mp3=is_mp3, max_items=max_items, save_dir=target_dir)
+                download_tg_channel_all(url, task_id, is_mp3=is_mp3, max_items=max_items)
             except Exception as e:
                 tasks[task_id]['status'] = 'failed'
                 tasks[task_id]['error'] = str(e)
             return
 
-        # 2. Pinterest Direct
         if "pinterest.com" in url or "pin.it" in url:
             pin = resolve_pinterest(url)
             if pin:
                 ext = "mp3" if is_mp3 else pin['ext']
-                out = os.path.join(target_dir, f"Pinterest_{task_id}.{ext}")
+                out = os.path.join(DOWNLOAD_DIR, f"Pinterest_{task_id}.{ext}")
                 try:
                     urllib.request.urlretrieve(pin['url'], out)
+                    tasks[task_id]['final_file'] = out
                     tasks[task_id]['status'] = 'completed'
                     return
                 except Exception:
                     pass
 
-        # 3. Automatic 1 Profile / Channel Detection
-        # ប្រសិនបើអ្នកប្រើជ្រើសរើស "1 Profile / Channel" ប៉ុន្តែ Link ដែល Paste ចូលជា Single Video (ឧ. youtu.be/... ឬ tiktok.com/@user/video/...)
-        # កូដនឹងស្រង់យក Channel URL / Profile URL របស់ម្ចាស់វីដេអូនោះដោយស្វ័យប្រវត្តិតែម្ដង!
         target_download_url = url
         if mode == 'profile':
             tasks[task_id]['msg'] = "កំពុងស្វែងរក Channel / Profile..."
@@ -253,12 +229,11 @@ def download_api():
                     info = ydl.extract_info(url, download=False)
                     chan_url = info.get('channel_url') or info.get('uploader_url')
                     if chan_url:
-                        # បន្ថែម /videos នៅខាងចុងបើជា YouTube channel ដើម្បីដោនយកតែ video
                         if "youtube.com" in chan_url and not chan_url.endswith('/videos'):
                             chan_url = chan_url.rstrip('/') + '/videos'
                         target_download_url = chan_url
                         uploader_name = info.get('channel') or info.get('uploader') or "Profile"
-                        tasks[task_id]['msg'] = f"រកឃើញ Profile: {uploader_name} (កំពុងទាញយក...)"
+                        tasks[task_id]['msg'] = f"រកឃើញ Profile: {uploader_name}"
             except Exception as e:
                 print("Could not auto-resolve channel:", e)
 
@@ -278,9 +253,13 @@ def download_api():
                     pass
             elif d['status'] == 'finished':
                 tasks[task_id]['percent'] = 100
+                f_name = d.get('filename')
+                if f_name:
+                    tasks[task_id]['final_file'] = f_name
+                    tasks[task_id]['files'].append(os.path.basename(f_name))
 
         is_batch = (mode in ['playlist', 'profile'])
-        out_template = os.path.join(target_dir, '%(uploader,channel,playlist_title)s/%(title)s.%(ext)s') if is_batch else os.path.join(target_dir, '%(title)s.%(ext)s')
+        out_template = os.path.join(DOWNLOAD_DIR, '%(id)s_%(title).50s.%(ext)s')
 
         ydl_opts = {
             'outtmpl': out_template,
@@ -324,6 +303,5 @@ def progress_api(task_id):
     return jsonify(tasks.get(task_id, {"status": "not_found"}))
 
 if __name__ == '__main__':
-    port = 5000
-    threading.Timer(1.5, lambda: webbrowser.open(f'http://127.0.0.1:{port}')).start()
-    app.run(host='127.0.0.1', port=port, debug=False)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host='0.0.0.0', port=port, debug=False)
