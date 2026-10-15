@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thou Downloading - Full Profile Batch</title>
+    <title>Thou Downloading - Cloud Edition</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = { darkMode: 'class' }
@@ -12,7 +12,7 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Kantumruy+Pro:wght@400;600;700&display=swap');
         * { box-sizing: border-box; user-select: none; }
-        body { font-family: 'Plus Jakarta Sans', 'Kantumruy Pro', sans-serif; overflow: hidden; }
+        body { font-family: 'Plus Jakarta Sans', 'Kantumruy Pro', sans-serif; }
         .custom-scroll::-webkit-scrollbar { width: 5px; }
         .custom-scroll::-webkit-scrollbar-thumb { background-color: #334155; border-radius: 9999px; }
 
@@ -53,7 +53,6 @@
         }
 
         .platform-card {
-            position: relative;
             background: rgba(15, 23, 42, 0.75);
             backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.08);
@@ -63,40 +62,34 @@
         }
         .platform-card:hover {
             transform: translateY(-4px);
-            border-color: var(--border-accent, #38bdf8);
-            box-shadow: 0 12px 25px -8px var(--shadow-accent, rgba(56, 189, 248, 0.35));
+            border-color: #38bdf8;
+            box-shadow: 0 12px 25px -8px rgba(56, 189, 248, 0.35);
         }
         .platform-card:hover .icon-box {
             transform: scale(1.1);
         }
-
-        .theme-tiktok { --border-accent: #00f2fe; --shadow-accent: rgba(0, 242, 254, 0.35); }
-        .theme-fb { --border-accent: #1877F2; --shadow-accent: rgba(24, 119, 242, 0.35); }
-        .theme-yt { --border-accent: #ef4444; --shadow-accent: rgba(239, 68, 68, 0.35); }
-        .theme-pin { --border-accent: #e60023; --shadow-accent: rgba(230, 0, 35, 0.35); }
-        .theme-tg { --border-accent: #229ed9; --shadow-accent: rgba(34, 158, 217, 0.35); }
     </style>
 </head>
-<body class="h-screen flex flex-col antialiased bg-[#0B1120] text-slate-100">
+<body class="min-h-screen flex flex-col antialiased bg-[#0B1120] text-slate-100">
 
     <!-- TOP HEADER -->
-    <header class="bg-[#0369A1] text-white px-5 py-2.5 flex items-center justify-between shadow-md flex-shrink-0 border-b border-sky-600/40">
+    <header class="bg-[#0369A1] text-white px-4 md:px-6 py-3 flex items-center justify-between shadow-md flex-shrink-0 border-b border-sky-600/40">
         <div class="flex items-center gap-3">
             <div class="w-10 h-10 rounded-2xl bg-white/20 border border-white/30 flex items-center justify-center text-white text-lg shadow-inner">
                 <i class="fa-solid fa-cloud-arrow-down"></i>
             </div>
             <div>
-                <h1 class="text-lg font-black leading-tight tracking-tight flex items-center gap-2">
+                <h1 class="text-base md:text-lg font-black leading-tight tracking-tight flex items-center gap-2">
                     <span class="gradient-title drop-shadow-sm font-extrabold tracking-wide">Thou Downloading</span>
-                    <span class="text-[10px] bg-gradient-to-r from-amber-400 to-yellow-300 text-slate-900 px-2 py-0.5 rounded-full font-black uppercase tracking-wider shadow-sm">VIP PRO</span>
+                    <span class="text-[10px] bg-gradient-to-r from-amber-400 to-yellow-300 text-slate-900 px-2 py-0.5 rounded-full font-black uppercase tracking-wider shadow-sm">Cloud VIP</span>
                 </h1>
                 
-                <div class="marquee-wrapper max-w-md h-4 mt-0.5">
-                    <div class="marquee-group text-[12px] text-sky-100 font-semibold tracking-wide">
+                <div class="marquee-wrapper max-w-xs md:max-w-md h-4 mt-0.5">
+                    <div class="marquee-group text-[11px] text-sky-100 font-semibold tracking-wide">
                         <span>✨ <b>ចង់ Download អីក៏បាន</b> • TikTok, Facebook, YouTube, Pinterest, Telegram ✨</span>
                         <span>✨ <b>ទាញយកវីដេអូទាំងអស់ពី 1 Profile ឬ 1 Playlist</b> ទាំងមូលដោយស្វ័យប្រវត្តិ ✨</span>
                     </div>
-                    <div class="marquee-group text-[12px] text-sky-100 font-semibold tracking-wide" aria-hidden="true">
+                    <div class="marquee-group text-[11px] text-sky-100 font-semibold tracking-wide" aria-hidden="true">
                         <span>✨ <b>ចង់ Download អីក៏បាន</b> • TikTok, Facebook, YouTube, Pinterest, Telegram ✨</span>
                         <span>✨ <b>ទាញយកវីដេអូទាំងអស់ពី 1 Profile ឬ 1 Playlist</b> ទាំងមូលដោយស្វ័យប្រវត្តិ ✨</span>
                     </div>
@@ -109,19 +102,16 @@
                 <i id="themeIcon" class="fa-solid fa-moon text-amber-300 text-xs"></i>
                 <span id="themeText">Dark UI</span>
             </button>
-            <button onclick="openFolder()" class="flex items-center gap-1.5 px-3 py-1.5 bg-white/10 hover:bg-white/20 border border-white/20 text-xs font-semibold rounded-lg transition">
-                <i class="fa-solid fa-folder text-[11px]"></i> Folder
-            </button>
             <div id="googleAuthSection">
                 <button id="btnGoogleLogin" onclick="handleGoogleSignIn()" class="flex items-center gap-2 px-3 py-1.5 bg-white text-slate-700 hover:bg-slate-50 text-xs font-bold rounded-lg shadow-sm border border-white/40 transition">
                     <img src="https://www.gstatic.com/images/branding/product/1x/gsa_512dp.png" alt="Google" class="w-4 h-4">
-                    <span>Sign in with Google</span>
+                    <span>Google Sign in</span>
                 </button>
                 <div id="userProfile" class="hidden flex items-center gap-2.5 bg-white/15 border border-white/30 px-2.5 py-1 rounded-xl shadow-sm">
                     <img id="userAvatar" src="https://lh3.googleusercontent.com/a/default-user=s96-c" alt="Avatar" class="w-6 h-6 rounded-full border border-white shadow-sm">
                     <div class="text-left">
                         <div id="userName" class="text-xs font-bold text-white leading-none">Thou</div>
-                        <div class="text-[9px] text-amber-200 font-semibold">Google Account</div>
+                        <div class="text-[9px] text-amber-200 font-semibold">Online</div>
                     </div>
                     <button onclick="handleSignOut()" title="Sign Out" class="ml-1 text-white/70 hover:text-white text-xs">
                         <i class="fa-solid fa-arrow-right-from-bracket"></i>
@@ -132,81 +122,77 @@
     </header>
 
     <!-- MAIN BODY -->
-    <div class="flex flex-1 overflow-hidden p-4 gap-4">
+    <div class="flex flex-1 flex-col md:flex-row p-3 md:p-4 gap-4 max-w-7xl mx-auto w-full">
         <!-- SIDEBAR -->
-        <aside class="w-52 bg-slate-900/90 backdrop-blur-md border border-slate-800 rounded-2xl shadow-xl p-3 flex flex-col justify-between flex-shrink-0">
-            <div class="space-y-1.5">
-                <button id="nav-home" onclick="switchNav('home')" class="nav-btn w-full flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-bold bg-[#0284C7] text-white shadow-sm shadow-sky-500/20 transition">
+        <aside class="w-full md:w-52 bg-slate-900/90 backdrop-blur-md border border-slate-800 rounded-2xl shadow-xl p-3 flex flex-col justify-between flex-shrink-0">
+            <div class="space-y-1.5 flex md:flex-col overflow-x-auto gap-2 md:gap-0 pb-1 md:pb-0">
+                <button id="nav-home" onclick="switchNav('home')" class="nav-btn whitespace-nowrap flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-bold bg-[#0284C7] text-white shadow-sm shadow-sky-500/20 transition">
                     <i class="fa-solid fa-house w-4"></i>
                     <span>Home</span>
                 </button>
-                <button id="nav-downloading" onclick="switchNav('downloading')" class="nav-btn w-full flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-400 hover:text-slate-100 hover:bg-slate-800/80 transition">
+                <button id="nav-downloading" onclick="switchNav('downloading')" class="nav-btn whitespace-nowrap flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-400 hover:text-slate-100 hover:bg-slate-800/80 transition">
                     <i class="fa-solid fa-download w-4"></i>
                     <span>Downloading</span>
                     <span id="badge-downloading" class="ml-auto text-[10px] bg-slate-800 text-sky-400 px-2 py-0.5 rounded-full font-bold">0</span>
                 </button>
-                <button id="nav-completed" onclick="switchNav('completed')" class="nav-btn w-full flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-400 hover:text-slate-100 hover:bg-slate-800/80 transition">
+                <button id="nav-completed" onclick="switchNav('completed')" class="nav-btn whitespace-nowrap flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-400 hover:text-slate-100 hover:bg-slate-800/80 transition">
                     <i class="fa-regular fa-circle-check w-4"></i>
                     <span>Completed</span>
                     <span id="badge-completed" class="ml-auto text-[10px] bg-slate-800 text-emerald-400 px-2 py-0.5 rounded-full font-bold">0</span>
                 </button>
-                <button onclick="setMode('profile')" class="nav-btn w-full flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-semibold text-amber-400 hover:bg-slate-800/80 transition">
+                <button onclick="setMode('profile')" class="nav-btn whitespace-nowrap flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-semibold text-amber-400 hover:bg-slate-800/80 transition">
                     <i class="fa-solid fa-user-circle w-4"></i>
                     <span>1 Profile Mode</span>
                 </button>
-                <button onclick="setMode('playlist')" class="nav-btn w-full flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-semibold text-sky-400 hover:bg-slate-800/80 transition">
-                    <i class="fa-solid fa-list-ul w-4"></i>
-                    <span>Playlist Mode</span>
-                </button>
             </div>
-            <div class="bg-slate-950/70 border border-slate-800/80 rounded-2xl p-3 text-center">
-                <div class="w-12 h-12 mx-auto bg-gradient-to-tr from-sky-600 to-indigo-600 text-white rounded-2xl flex items-center justify-center text-xl mb-2 shadow-sm shadow-sky-500/30">
-                    <i class="fa-solid fa-bolt-lightning text-yellow-300"></i>
+            <div class="hidden md:block bg-slate-950/70 border border-slate-800/80 rounded-2xl p-3 text-center">
+                <div class="w-10 h-10 mx-auto bg-gradient-to-tr from-sky-600 to-indigo-600 text-white rounded-xl flex items-center justify-center text-lg mb-1.5 shadow-sm shadow-sky-500/30">
+                    <i class="fa-solid fa-cloud"></i>
                 </div>
-                <div class="text-xs font-bold text-slate-200">Thou Downloading</div>
-                <div class="text-[10px] text-slate-400 font-medium mt-0.5">Auto Channel Fetch</div>
+                <div class="text-xs font-bold text-slate-200">Cloud Web Live</div>
+                <div class="text-[10px] text-emerald-400 font-medium mt-0.5">● Auto Saves to Browser</div>
             </div>
         </aside>
 
         <!-- RIGHT CONTENT -->
-        <main class="flex-1 overflow-y-auto custom-scroll flex flex-col gap-3.5 pr-1">
+        <main class="flex-1 overflow-y-auto custom-scroll flex flex-col gap-3.5">
             <div id="view-home" class="space-y-3.5">
                 <!-- PLATFORM ICONS -->
-                <div class="grid grid-cols-5 gap-3">
-                    <div class="platform-card theme-tiktok p-3.5 flex flex-col items-center justify-center gap-2">
-                        <div class="icon-box w-11 h-11 rounded-2xl bg-black border border-slate-700/80 flex items-center justify-center text-white text-xl transition-all">
+                <div class="grid grid-cols-5 gap-2 md:gap-3">
+                    <div class="platform-card p-2 md:p-3.5 flex flex-col items-center justify-center gap-1.5">
+                        <div class="icon-box w-10 h-10 rounded-xl bg-black border border-slate-700/80 flex items-center justify-center text-white text-lg">
                             <i class="fa-brands fa-tiktok"></i>
                         </div>
-                        <span class="text-xs font-bold text-slate-300">TikTok Profile</span>
+                        <span class="text-[11px] font-bold text-slate-300">TikTok</span>
                     </div>
-                    <div class="platform-card theme-fb p-3.5 flex flex-col items-center justify-center gap-2">
-                        <div class="icon-box w-11 h-11 rounded-2xl bg-[#1877F2] flex items-center justify-center text-white text-xl transition-all">
+                    <div class="platform-card p-2 md:p-3.5 flex flex-col items-center justify-center gap-1.5">
+                        <div class="icon-box w-10 h-10 rounded-xl bg-[#1877F2] flex items-center justify-center text-white text-lg">
                             <i class="fa-brands fa-facebook-f"></i>
                         </div>
-                        <span class="text-xs font-bold text-slate-300">Facebook Page</span>
+                        <span class="text-[11px] font-bold text-slate-300">Facebook</span>
                     </div>
-                    <div class="platform-card theme-yt p-3.5 flex flex-col items-center justify-center gap-2">
-                        <div class="icon-box w-11 h-11 rounded-2xl bg-[#FF0000] flex items-center justify-center text-white text-xl transition-all">
+                    <div class="platform-card p-2 md:p-3.5 flex flex-col items-center justify-center gap-1.5">
+                        <div class="icon-box w-10 h-10 rounded-xl bg-[#FF0000] flex items-center justify-center text-white text-lg">
                             <i class="fa-brands fa-youtube"></i>
                         </div>
-                        <span class="text-xs font-bold text-slate-300">YouTube Channel</span>
+                        <span class="text-[11px] font-bold text-slate-300">YouTube</span>
                     </div>
-                    <div class="platform-card theme-pin p-3.5 flex flex-col items-center justify-center gap-2">
-                        <div class="icon-box w-11 h-11 rounded-2xl bg-[#E60023] flex items-center justify-center text-white text-xl transition-all">
+                    <div class="platform-card p-2 md:p-3.5 flex flex-col items-center justify-center gap-1.5">
+                        <div class="icon-box w-10 h-10 rounded-xl bg-[#E60023] flex items-center justify-center text-white text-lg">
                             <i class="fa-brands fa-pinterest-p"></i>
                         </div>
-                        <span class="text-xs font-bold text-slate-300">Pinterest Board</span>
+                        <span class="text-[11px] font-bold text-slate-300">Pinterest</span>
                     </div>
-                    <div class="platform-card theme-tg p-3.5 flex flex-col items-center justify-center gap-2">
-                        <div class="icon-box w-11 h-11 rounded-2xl bg-[#229ED9] flex items-center justify-center text-white text-xl transition-all">
+                    <div class="platform-card p-2 md:p-3.5 flex flex-col items-center justify-center gap-1.5">
+                        <div class="icon-box w-10 h-10 rounded-xl bg-[#229ED9] flex items-center justify-center text-white text-lg">
                             <i class="fa-brands fa-telegram"></i>
                         </div>
-                        <span class="text-xs font-bold text-slate-300">Telegram Channel</span>
+                        <span class="text-[11px] font-bold text-slate-300">Telegram</span>
                     </div>
                 </div>
 
                 <!-- URL INPUT ROW -->
-                <div class="flex items-center gap-2.5">
+                <div class="flex items-center gap-2">
                     <div class="flex-1 bg-slate-900/90 backdrop-blur-md border border-slate-800 rounded-2xl px-4 py-3 flex items-center gap-3 shadow-sm focus-within:border-sky-500 transition">
                         <i class="fa-solid fa-link text-slate-500 text-sm"></i>
                         <input id="urlInput" type="text" placeholder="Paste link (Single video, Video link, or Channel/User Profile link here...)"
@@ -215,18 +201,18 @@
                             <i class="fa-solid fa-xmark text-sm"></i>
                         </button>
                     </div>
-                    <button onclick="pasteClipboard()" class="px-5 py-3 bg-slate-900/90 border border-slate-800 hover:bg-slate-800 text-slate-200 text-sm font-bold rounded-2xl shadow-sm flex items-center gap-2 transition flex-shrink-0">
+                    <button onclick="pasteClipboard()" class="px-4 py-3 bg-slate-900/90 border border-slate-800 hover:bg-slate-800 text-slate-200 text-sm font-bold rounded-2xl shadow-sm flex items-center gap-2 transition flex-shrink-0">
                         <i class="fa-regular fa-paste text-slate-400"></i> Paste
                     </button>
-                    <button id="analyzeBtn" onclick="analyzeLink()" class="px-6 py-3 bg-[#0284C7] hover:bg-[#0369A1] text-white text-sm font-bold rounded-2xl shadow-sm flex items-center gap-2 transition flex-shrink-0">
+                    <button id="analyzeBtn" onclick="analyzeLink()" class="px-5 py-3 bg-[#0284C7] hover:bg-[#0369A1] text-white text-sm font-bold rounded-2xl shadow-sm flex items-center gap-2 transition flex-shrink-0">
                         <i class="fa-solid fa-magnifying-glass"></i> Analyze
                     </button>
                 </div>
 
                 <!-- DOWNLOAD MODE & CONFIG BOX -->
                 <div class="bg-slate-900/90 backdrop-blur-md rounded-2xl p-4 border border-slate-800 shadow-md space-y-3.5">
-                    <div class="flex items-center justify-between">
-                        <div class="flex items-center gap-6 text-sm font-bold text-slate-300">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-3">
+                        <div class="flex flex-wrap items-center gap-4 text-xs md:text-sm font-bold text-slate-300">
                             <label class="flex items-center gap-2 cursor-pointer">
                                 <input type="radio" name="mode" value="single" id="modeSingle" class="w-4 h-4 text-sky-600 focus:ring-sky-500 bg-slate-800 border-slate-700">
                                 <span>Single Video</span>
@@ -237,7 +223,7 @@
                             </label>
                             <label class="flex items-center gap-2 cursor-pointer">
                                 <input type="radio" name="mode" value="profile" id="modeProfile" checked class="w-4 h-4 text-amber-500 focus:ring-amber-500 bg-slate-800 border-slate-700">
-                                <span class="text-amber-400 font-extrabold">👑 1 Profile / Channel (All Videos)</span>
+                                <span class="text-amber-400 font-extrabold">👑 1 Profile / Channel</span>
                             </label>
                         </div>
 
@@ -252,9 +238,9 @@
                         </div>
                     </div>
 
-                    <div class="grid grid-cols-12 gap-4 items-center">
-                        <div class="col-span-3">
-                            <div id="thumbContainer" class="w-full h-24 bg-slate-950 rounded-xl overflow-hidden relative shadow-inner flex items-center justify-center border border-slate-800">
+                    <div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-center pt-2">
+                        <div class="col-span-1 md:col-span-3">
+                            <div id="thumbContainer" class="w-full h-28 md:h-24 bg-slate-950 rounded-xl overflow-hidden relative shadow-inner flex items-center justify-center border border-slate-800">
                                 <img id="thumbImg" src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=400&q=80" alt="Preview" class="w-full h-full object-cover opacity-80">
                                 <div class="absolute inset-0 flex items-center justify-center">
                                     <div class="w-8 h-8 rounded-full bg-black/60 backdrop-blur-sm border border-white/30 flex items-center justify-center text-white text-xs pl-0.5">
@@ -264,25 +250,22 @@
                             </div>
                         </div>
 
-                        <div class="col-span-4 space-y-1">
+                        <div class="col-span-1 md:col-span-4 space-y-1">
                             <h4 id="videoTitle" class="text-sm font-bold text-slate-100 line-clamp-1">Video / Profile Title</h4>
-                            <div id="videoDuration" class="text-xs text-slate-400 font-medium">Auto Channel Fetch Ready</div>
+                            <div id="videoDuration" class="text-xs text-slate-400 font-medium">Ready to download</div>
                             
-                            <!-- SAVE TO DIRECTORY PICKER -->
-                            <div class="flex items-center gap-1.5 pt-1 text-xs">
-                                <span class="text-slate-400 font-medium flex-shrink-0">Save to:</span>
-                                <input id="savePathInput" type="text" value="" 
-                                       placeholder="C:\Users\..." 
-                                       class="bg-slate-950 border border-slate-800 text-sky-400 font-mono text-[11px] px-2 py-1 rounded-lg w-44 truncate focus:outline-none focus:border-sky-500"
-                                       title="ចុច Change ដើម្បីរើស Folder">
-                                <button id="changeFolderBtn" onclick="selectFolderDialog()" 
-                                        class="text-[11px] bg-sky-600 hover:bg-sky-500 text-white font-bold px-2.5 py-1 rounded-lg transition flex items-center gap-1 shadow-sm flex-shrink-0">
-                                    <i class="fa-regular fa-folder-open"></i> Change
-                                </button>
+                            <!-- SAVE LOCATION INFO -->
+                            <div class="flex items-center gap-2 pt-1 text-xs">
+                                <span class="text-slate-400 font-medium flex-shrink-0">Save Location:</span>
+                                <div class="flex items-center gap-1.5 text-emerald-400 bg-emerald-950/40 border border-emerald-500/30 px-2.5 py-0.5 rounded-lg text-[11px] font-semibold">
+                                    <i class="fa-solid fa-mobile-screen text-[10px]"></i>
+                                    <i class="fa-solid fa-laptop text-[10px]"></i>
+                                    <span>Browser Downloads (ទូរស័ព្ទ / PC)</span>
+                                </div>
                             </div>
                         </div>
 
-                        <div class="col-span-2 space-y-2">
+                        <div class="col-span-1 md:col-span-2 space-y-2">
                             <div>
                                 <span class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-0.5">Quality</span>
                                 <select id="qualitySelect" class="w-full appearance-none bg-slate-950 border border-slate-800 rounded-xl px-2.5 py-1.5 text-xs font-semibold text-slate-200 focus:outline-none focus:border-sky-500">
@@ -302,7 +285,7 @@
                             </div>
                         </div>
 
-                        <div class="col-span-3">
+                        <div class="col-span-1 md:col-span-3">
                             <button id="downloadNowBtn" onclick="startDownload()" class="w-full py-4 bg-[#16A34A] hover:bg-[#15803D] active:scale-[0.99] text-white rounded-2xl font-bold text-sm flex items-center justify-center gap-2 shadow-md shadow-green-600/30 transition">
                                 <i class="fa-solid fa-download text-base"></i>
                                 <span>Download Now</span>
@@ -316,7 +299,7 @@
             <div id="queueSection" class="bg-slate-900/90 backdrop-blur-md rounded-2xl border border-slate-800 shadow-md overflow-hidden flex flex-col flex-1">
                 <div class="flex items-center justify-between px-4 pt-3 pb-2 border-b border-slate-800">
                     <div class="flex items-center gap-2">
-                        <button id="tab-btn-queue" onclick="switchQueueTab('all')" class="q-tab px-4 py-1.5 bg-[#0284C7] text-white text-xs font-bold rounded-xl flex items-center gap-2 shadow-sm transition">
+                        <button id="tab-btn-queue" onclick="switchQueueTab('all')" class="q-tab px-3.5 py-1.5 bg-[#0284C7] text-white text-xs font-bold rounded-xl flex items-center gap-2 shadow-sm transition">
                             <i class="fa-solid fa-arrow-down-to-bracket text-[11px]"></i>
                             <span>All Queue (<span id="queueBadge">0</span>)</span>
                         </button>
@@ -334,7 +317,7 @@
                         <span>Clear All</span>
                     </button>
                 </div>
-                <div id="queueContainer" class="p-3 space-y-2.5 max-h-72 overflow-y-auto custom-scroll">
+                <div id="queueContainer" class="p-3 space-y-2.5 max-h-80 overflow-y-auto custom-scroll">
                     <div id="emptyMsg" class="py-12 text-center text-slate-500 text-xs font-medium">
                         មិនទាន់មានវីដេអូទាញយកនៅឡើយទេ។ សូម Paste Link រួចចុច "Download Now"!
                     </div>
@@ -343,63 +326,10 @@
         </main>
     </div>
 
-    <!-- GOOGLE LOGIN MODAL -->
-    <div id="googleLoginModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-        <div class="bg-slate-900 border border-slate-800 text-slate-100 w-full max-w-sm rounded-3xl p-6 shadow-2xl text-center space-y-4">
-            <div class="w-14 h-14 bg-slate-800 border border-slate-700 rounded-full mx-auto flex items-center justify-center shadow-inner">
-                <img src="https://www.gstatic.com/images/branding/product/1x/gsa_512dp.png" alt="Google" class="w-8 h-8">
-            </div>
-            <div>
-                <h3 class="text-base font-bold text-slate-100">Sign in with Google</h3>
-                <p class="text-xs text-slate-400 mt-1">ភ្ជាប់គណនី Google របស់អ្នក</p>
-            </div>
-            <div class="space-y-2.5 text-left pt-2">
-                <label class="block text-xs font-bold text-slate-300 mb-1">Your Name / Email:</label>
-                <input id="googleEmailInput" type="text" value="Thou" class="w-full text-xs bg-slate-950 border border-slate-800 rounded-xl p-2.5 text-white focus:outline-none focus:border-sky-500">
-            </div>
-            <div class="flex gap-2 pt-2">
-                <button onclick="closeGoogleModal()" class="flex-1 py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-bold rounded-xl transition">Cancel</button>
-                <button onclick="confirmGoogleLogin()" class="flex-1 py-2.5 bg-[#0284C7] hover:bg-[#0369A1] text-white text-xs font-bold rounded-xl shadow-sm transition">Continue</button>
-            </div>
-        </div>
-    </div>
-
     <!-- SCRIPT -->
     <script>
         let currentNav = 'home';
         let currentQueueFilter = 'all';
-
-        async function loadDefaultDir() {
-            try {
-                const res = await fetch('/api/get_current_dir');
-                const data = await res.json();
-                if (data.dir) {
-                    document.getElementById('savePathInput').value = data.dir;
-                }
-            } catch (err) { console.error(err); }
-        }
-        window.addEventListener('DOMContentLoaded', loadDefaultDir);
-
-        async function selectFolderDialog() {
-            const btn = document.getElementById('changeFolderBtn');
-            btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Choosing...`;
-            btn.disabled = true;
-
-            try {
-                const res = await fetch('/api/select_folder', { method: 'POST' });
-                const data = await res.json();
-                if (data.status === 'ok' && data.dir) {
-                    document.getElementById('savePathInput').value = data.dir;
-                }
-            } catch (err) {
-                const current = document.getElementById('savePathInput').value;
-                const path = prompt("សូមបញ្ចូល Path ទីតាំង Folder (ឧ. D:\\Videos):", current);
-                if (path) document.getElementById('savePathInput').value = path.trim();
-            } finally {
-                btn.innerHTML = `<i class="fa-regular fa-folder-open"></i> Change`;
-                btn.disabled = false;
-            }
-        }
 
         function setMode(m) {
             if (m === 'profile') document.getElementById('modeProfile').checked = true;
@@ -413,47 +343,24 @@
             const themeIcon = document.getElementById('themeIcon');
             if (html.classList.contains('dark')) {
                 html.classList.remove('dark');
-                document.body.className = "h-screen flex flex-col antialiased bg-[#EBF2FA] text-[#1E293B] transition-colors duration-300";
+                document.body.className = "min-h-screen flex flex-col antialiased bg-[#EBF2FA] text-[#1E293B] transition-colors duration-300";
                 themeText.innerText = "Light UI";
                 themeIcon.className = "fa-solid fa-sun text-amber-300 text-xs";
             } else {
                 html.classList.add('dark');
-                document.body.className = "h-screen flex flex-col antialiased bg-[#0B1120] text-slate-100 transition-colors duration-300";
+                document.body.className = "min-h-screen flex flex-col antialiased bg-[#0B1120] text-slate-100 transition-colors duration-300";
                 themeText.innerText = "Dark UI";
                 themeIcon.className = "fa-solid fa-moon text-amber-300 text-xs";
             }
         }
 
-        function handleGoogleSignIn() { document.getElementById('googleLoginModal').classList.remove('hidden'); }
-        function closeGoogleModal() { document.getElementById('googleLoginModal').classList.add('hidden'); }
-        function confirmGoogleLogin() {
-            const name = document.getElementById('googleEmailInput').value.trim() || "Thou";
-            localStorage.setItem('google_user_name', name);
-            applyUserProfile(name);
-            closeGoogleModal();
-        }
-        function handleSignOut() {
-            localStorage.removeItem('google_user_name');
-            document.getElementById('btnGoogleLogin').classList.remove('hidden');
-            document.getElementById('userProfile').classList.add('hidden');
-        }
-        function applyUserProfile(name) {
-            document.getElementById('userName').innerText = name;
-            document.getElementById('btnGoogleLogin').classList.add('hidden');
-            document.getElementById('userProfile').classList.remove('hidden');
-        }
-        window.addEventListener('DOMContentLoaded', () => {
-            const savedName = localStorage.getItem('google_user_name');
-            if (savedName) applyUserProfile(savedName);
-        });
-
         function switchNav(nav) {
             currentNav = nav;
             document.querySelectorAll('.nav-btn').forEach(btn => {
-                btn.className = "nav-btn w-full flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-400 hover:text-slate-100 hover:bg-slate-800/80 transition";
+                btn.className = "nav-btn whitespace-nowrap flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-400 hover:text-slate-100 hover:bg-slate-800/80 transition";
             });
             const activeBtn = document.getElementById(`nav-${nav}`);
-            if (activeBtn) activeBtn.className = "nav-btn w-full flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-bold bg-[#0284C7] text-white shadow-sm shadow-sky-500/20 transition";
+            if (activeBtn) activeBtn.className = "nav-btn whitespace-nowrap flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-bold bg-[#0284C7] text-white shadow-sm shadow-sky-500/20 transition";
 
             if (nav === 'home') {
                 document.getElementById('view-home').classList.remove('hidden');
@@ -470,10 +377,10 @@
         function switchQueueTab(filter) {
             currentQueueFilter = filter;
             document.querySelectorAll('.q-tab').forEach(b => {
-                b.className = "q-tab px-3 py-1.5 text-slate-400 hover:text-slate-100 text-xs font-semibold rounded-xl flex items-center gap-2 transition";
+                b.className = "q-tab px-3.5 py-1.5 text-slate-400 hover:text-slate-100 text-xs font-semibold rounded-xl flex items-center gap-2 transition";
             });
             const activeTab = document.getElementById(`tab-btn-${filter === 'all' ? 'queue' : filter}`);
-            if (activeTab) activeTab.className = "q-tab px-4 py-1.5 bg-[#0284C7] text-white text-xs font-bold rounded-xl flex items-center gap-2 shadow-sm transition";
+            if (activeTab) activeTab.className = "q-tab px-3.5 py-1.5 bg-[#0284C7] text-white text-xs font-bold rounded-xl flex items-center gap-2 shadow-sm transition";
 
             const items = document.querySelectorAll('.queue-item');
             items.forEach(el => {
@@ -490,15 +397,6 @@
                 document.getElementById('urlInput').value = (await navigator.clipboard.readText()).trim();
                 analyzeLink();
             } catch (err) { alert("សូមចុច Ctrl+V"); }
-        }
-        function openAbout() { alert("Thou Downloading Pro v4.5 - Auto Channel Fetcher!\nDev: Yi Thou"); }
-        async function openFolder() {
-            const currentDir = document.getElementById('savePathInput').value.trim();
-            await fetch('/api/open_folder', { 
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ dir: currentDir })
-            }); 
         }
 
         async function analyzeLink() {
@@ -538,12 +436,11 @@
             const format = document.getElementById('formatSelect').value;
             const max_items = document.getElementById('maxItemsSelect').value;
             const title = document.getElementById('videoTitle').innerText;
-            const save_dir = document.getElementById('savePathInput').value.trim();
 
             const res = await fetch('/api/download', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ url, mode, quality, format, title, max_items, save_dir })
+                body: JSON.stringify({ url, mode, quality, format, title, max_items })
             });
 
             const data = await res.json();
@@ -561,7 +458,7 @@
             const row = document.createElement('div');
             row.id = `task-${taskId}`;
             row.setAttribute('data-status', 'downloading');
-            row.className = "queue-item p-2.5 rounded-xl border border-slate-800 bg-slate-950 flex items-center justify-between gap-4 transition";
+            row.className = "queue-item p-3 rounded-xl border border-slate-800 bg-slate-950 flex flex-col md:flex-row md:items-center justify-between gap-3 transition";
 
             let icon = format === 'mp3' ? "fa-solid fa-music text-emerald-400" : "fa-solid fa-video text-sky-400";
             let tag = mode === 'profile' ? '👑 1 Profile (All Videos)' : (mode === 'playlist' ? '📑 Playlist' : '🎬 Single');
@@ -569,30 +466,27 @@
             row.innerHTML = `
                 <div class="flex items-center gap-3">
                     <input type="checkbox" checked class="w-4 h-4 rounded text-sky-600 bg-slate-900 border-slate-700">
-                    <div class="w-16 h-10 rounded-lg overflow-hidden relative shadow-sm flex-shrink-0 bg-slate-900 border border-slate-800 flex items-center justify-center text-white text-xs">
+                    <div class="w-14 h-10 rounded-lg overflow-hidden relative shadow-sm flex-shrink-0 bg-slate-900 border border-slate-800 flex items-center justify-center text-white text-xs">
                         <i class="${icon}"></i>
                     </div>
                     <div>
-                        <div class="text-xs font-bold text-slate-100 truncate max-w-xs" title="${title}">${title}</div>
+                        <div class="text-xs font-bold text-slate-100 truncate max-w-xs md:max-w-md" title="${title}">${title}</div>
                         <div class="text-[10px] text-amber-400 font-semibold mt-0.5">${tag} &nbsp;|&nbsp; ${format.toUpperCase()}</div>
                     </div>
                 </div>
 
-                <div class="flex items-center gap-6">
-                    <div class="w-60 space-y-1">
+                <div class="flex items-center justify-between md:justify-end gap-4 w-full md:w-auto">
+                    <div class="w-48 md:w-56 space-y-1">
                         <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
                             <div id="bar-${taskId}" class="bg-[#0284C7] h-full rounded-full transition-all duration-300" style="width: 5%"></div>
                         </div>
                         <div class="flex items-center justify-between text-[10px] font-bold">
-                            <span id="stat-${taskId}" class="text-sky-400 truncate max-w-[160px]">Fetching Profile...</span>
+                            <span id="stat-${taskId}" class="text-sky-400 truncate max-w-[150px]">Fetching...</span>
                             <span id="speed-${taskId}" class="text-slate-500">Auto Scan</span>
                         </div>
                     </div>
 
-                    <div class="flex items-center gap-1.5 text-slate-400">
-                        <button onclick="openFolder()" title="Open Folder" class="w-7 h-7 rounded-lg border border-slate-800 bg-slate-900 hover:bg-slate-800 flex items-center justify-center text-xs text-slate-300">
-                            <i class="fa-regular fa-folder"></i>
-                        </button>
+                    <div id="action-${taskId}" class="flex items-center gap-1.5 text-slate-400">
                         <button class="w-7 h-7 rounded-lg border border-red-500/30 bg-red-500/10 hover:bg-red-500/20 flex items-center justify-center text-xs text-red-400" onclick="document.getElementById('task-${taskId}').remove(); updateBadges();">
                             <i class="fa-solid fa-xmark"></i>
                         </button>
@@ -612,6 +506,7 @@
                 const bar = document.getElementById(`bar-${taskId}`);
                 const stat = document.getElementById(`stat-${taskId}`);
                 const speed = document.getElementById(`speed-${taskId}`);
+                const action = document.getElementById(`action-${taskId}`);
                 if (!row) { clearInterval(timer); return; }
 
                 if (data.status === 'downloading') {
@@ -624,8 +519,22 @@
                     bar.style.width = '100%';
                     bar.className = 'bg-[#16A34A] h-full rounded-full';
                     stat.className = 'text-[#16A34A] font-bold';
-                    stat.innerText = 'Completed All Profile';
+                    stat.innerText = 'Completed!';
                     speed.innerText = '100%';
+
+                    // ADD DIRECT DOWNLOAD BUTTON FOR BROWSER
+                    action.innerHTML = `
+                        <a href="/api/download_file/${taskId}" download class="px-2.5 py-1 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs flex items-center gap-1.5 shadow-sm transition">
+                            <i class="fa-solid fa-cloud-arrow-down"></i> Save to PC/Phone
+                        </a>
+                        <button class="w-7 h-7 rounded-lg border border-red-500/30 bg-red-500/10 hover:bg-red-500/20 flex items-center justify-center text-xs text-red-400 ml-1" onclick="document.getElementById('task-${taskId}').remove(); updateBadges();">
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+                    `;
+
+                    // Auto download trigger
+                    window.location.href = `/api/download_file/${taskId}`;
+
                     updateBadges();
                     if (currentQueueFilter === 'downloading') row.classList.add('hidden');
                 } else if (data.status === 'failed') {
